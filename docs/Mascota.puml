@@ -1,38 +1,70 @@
 @startuml mascota 
 
-Class Mascota 
-Class Alimento
-Class Carne 
-Class Juguete
-Class Animal
-Class Pelota 
+
+
+package perro
+{
+Class Mascota{
+-usa:Usa}
++Jabon
++Cama
++Pelota
++Hueso
++Rastreador
+}
+
+ 
 Class Dueño
-Class Rastreador
 Class Jabon  
-Class Cama
-Class hueso
-Class Casa 
 Class pelaje 
+
+package personaje{
+Class Humano
+Class Animal
+
+}
+
+package Comida{
+class Alimento    
+Class Carne 
+Class hueso
 Class Agua 
 Class Premios
-Class Humano
+}
 
-Mascota --|> Animal
-Carne --|> Alimento
-Pelota --|> Juguete
-Humano --|> Dueño
-Hueso --|> Premios
-Premo --|> Alimento
-Mascota *--o Rastreador
-Mascota *--o Dueño
-Mascota *--o Casa
-Mascota *--o pelaje
-Mascota *--o Premios
-Mascota --o Jabon
-Mascota --o Cama
-Mascota --o Carne
-Mascota --o Pelota
-Mascota --o Agua
-Mascota --o Hueso
+package accesorios {
+Class Pelota 
+Class Juguete
+Class Rastreador
+}
+
+package lugares {
+Class Cama
+Class Casa 
+}
+
+
+Mascota "1" o-- "1" Jabon
+Mascota "1" o-- "1" Cama
+Mascota "1" o-- "*" Carne
+Mascota "1" o-- "*" Pelota
+Mascota "1" o-- "*" Agua
+Mascota "1" o-- "1" Hueso
+Humano "1" o-- "1" Cama
+Humano "1" o-- Agua
+Humano o-- "*" Alimento
+Mascota "1" --|> "1" Animal
+Carne "1" --|> "1" Alimento
+Pelota "1" --|> "1" Juguete
+Humano "1" --|> "1" Dueño
+hueso "-" --|> "*" Premios
+Premios "*" --|> "1" Alimento
+Mascota "1" *--o "1" Rastreador
+Humano "1" *--o "1" Casa
+Mascota "1" *--o "1" Dueño
+Mascota "1" *--o "1" Casa
+Mascota "1" *--o "1" pelaje
+Mascota "1" *--o "*" Premios
+
 
 @enduml
